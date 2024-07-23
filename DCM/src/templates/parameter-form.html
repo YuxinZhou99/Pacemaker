@@ -1,0 +1,90 @@
+<div id={{mode}}-form class="param-container" style="display:none;">
+    <form class="parameter-form" action="http://localhost:5000/submit-params/{{mode}}" method="POST">
+
+        <h2>Enter Parameters for {{mode}}</h2>
+        {% if failed %}
+            <u> <h3> Unable to update parameters </h3> </u>
+        {% endif %}
+
+        <h4>Lower Rate Limit</h4>
+        <input type="text" name="lower_rate_limit"
+                    placeholder="{{parameter_ranges["lower_rate_limit"]["range"]}}"
+                    value={{"" if stored_params["mode"] != mode else stored_params["lower_rate_limit"]}}>
+
+<!--        <h4>Upper Rate Limit</h4>-->
+<!--        <input type="text" name="upper_rate_limit" placeholder="60" value={{"" if stored_params["mode"] != mode else stored_params["upper_rate_limit"]}}>-->
+
+        {% if mode[0] == "A" or mode[0] == "D"%}
+            <h4>Atrial Amplitude</h4>
+            <input type="text" name="atrial_amplitude"
+                    placeholder="{{parameter_ranges["atrial_amplitude"]["range"]}}"
+                    value={{"" if stored_params["mode"] != mode else stored_params["atrial_amplitude"]}}>
+            <h4>Atrial Pulse Width</h4>
+            <input type="text" name="atrial_pulse_width"
+                    placeholder="{{parameter_ranges["atrial_pulse_width"]["range"]}}"
+                    value={{"" if stored_params["mode"] != mode else stored_params["atrial_pulse_width"]}}>
+            {% if 'I' in mode %}
+                <h4>Atrial Sensitivity</h4>
+                <input type="text" name="atrial_sensitivity"
+                       placeholder="{{parameter_ranges["atrial_sensitivity"]["range"]}}"
+                       value={{"" if stored_params["mode"] != mode else stored_params["atrial_sensitivity"]}}>
+                <h4>Atrial Refractory Period (ARP)</h4>
+                <input type="text" name="arp"
+                        placeholder="{{parameter_ranges["arp"]["range"]}}"
+                        value={{"" if stored_params["mode"] != mode else stored_params["arp"]}}>
+<!--                <h4>PVARP</h4>-->
+<!--                <input type="text" name="pvarp" placeholder="60" value={{"" if stored_params["mode"] != mode else stored_params["pvarp"]}}>-->
+            {% endif %}
+        {% endif %}
+        {% if mode[0] == "V" or mode[0] == "D" %}
+            <h4>Ventricle Amplitude</h4>
+            <input type="text" name="ventricle_amplitude"
+                    placeholder="{{parameter_ranges["ventricle_amplitude"]["range"]}}"
+                    value={{"" if stored_params["mode"] != mode else stored_params["ventricle_amplitude"]}}>
+            <h4>Ventricle Pulse Width</h4>
+            <input type="text" name="ventricle_pulse_width"
+                    placeholder="{{parameter_ranges["ventricle_pulse_width"]["range"]}}"
+                    value={{"" if stored_params["mode"] != mode else stored_params["ventricle_pulse_width"]}}>
+            {% if 'I' in mode %}
+
+                <h4>Ventricle Sensitivity</h4>
+                <input type="text" name="ventricle_sensitivity"
+                       placeholder="{{parameter_ranges["ventricle_sensitivity"]["range"]}}"
+                       value={{"" if stored_params["mode"] != mode else stored_params["ventricle_sensitivity"]}}>
+                <h4>Ventricle Refractory Period (VRP)</h4>
+                <input type="text" name="vrp"
+                        placeholder="{{parameter_ranges["vrp"]["range"]}}"
+                        value={{"" if stored_params["mode"] != mode else stored_params["vrp"]}}>
+<!--                <h4>PVARP Extension</h4>-->
+<!--                <input type="text" name="pvarp-ext" placeholder="60" value={{"" if stored_params["mode"] != mode else stored_params["pvarp-ext"]}}>-->
+            {% endif %}
+        {% endif %}
+        {% if mode[0] == "D" %}
+        <h4>AV Delay</h4>
+         <input type="text" name="fixed_av_delay"
+                        placeholder="{{parameter_ranges["fixed_av_delay"]["range"]}}"
+                        value={{"" if stored_params["mode"] != mode else stored_params["fixed_av_delay"]}}>
+        {% endif %}
+        {%if 'R' in mode %}
+            <h4>Maximum Sensitivity Rate</h4>
+            <input type="text" name="max_sens_rate"
+                    placeholder="{{parameter_ranges["max_sens_rate"]["range"]}}"
+                    value={{"" if stored_params["mode"] != mode else stored_params["max_sens_rate"]}}>
+<!--            <h4>Activity Threshold</h4>-->
+<!--            <input type="text" name="activity_threshold"-->
+<!--                    placeholder="{{parameter_ranges["activity_threshold"]["range"]}}"-->
+<!--                    value={{"" if stored_params["mode"] != mode else stored_params["activity_threshold"]}}>-->
+<!--            <h4>Reaction Time</h4>-->
+<!--            <input type="text" name="reaction_time" placeholder="60" value={{"" if stored_params["mode"] != mode else stored_params["reaction_time"]}}>-->
+            <h4>Response Factor</h4>
+            <input type="text" name="response_factor"
+                    placeholder="{{parameter_ranges["response_factor"]["range"]}}"
+                    value={{"" if stored_params["mode"] != mode else stored_params["response_time"]}}>
+<!--            <h4>Recovery Time</h4>-->
+<!--            <input type="text" name="recovery_time" placeholder="60" value={{"" if stored_params["mode"] != mode else stored_params["recovery_time"]}}>-->
+        {% endif %}
+        <br>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+</div>
